@@ -69,11 +69,11 @@
 
 \section{Introduction}
 
-	Ever since deep learning came out, it has revolutionized many different fields: from natural language processing, bioinformatics, to computer vision.
-	Recently, deep learning has found its way in the field of music information retrieval (MIR) research. and more people are getting interested in this relatively new field.
-	While there were 2 deep learning articles in 2010 in ISMIR (International Society for Music Information Retrieval) conferences and 6 articles in 2015, it increases to 16 articles in 2016. This is showing us the current trend trend in using deep learning in MIR research.
+	The advent of deep learning has revolutionized many different fields: from natural language processing, bioinformatics, to computer vision.
+	Recently, deep learning has found its way in the field of music information retrieval (MIR) research with growing interest from researchers.
+	While there were 2 deep learning articles in 2010 in ISMIR (International Society for Music Information Retrieval) conferences and 6 articles in 2015, this increased to 16 articles in 2016. This shows the current trend in using deep learning in MIR research.
 	
-	MIR research is an interdisciplinary science of retrieving information from music that include:
+	MIR research is an interdisciplinary science of retrieving information from music that includes:
 \begin{itemize}
 	\item Recommender systems
 	\item Track separation and instrument recognition
@@ -81,17 +81,17 @@
 	\item {\bf Automatic categorization}
 	\item Music generation
 \end{itemize}	
-	Here, we are considering the problem of {\bf automatic categorization}; specifically, {\bf music genre classification} i.e. classifying the give set of music audio files into different genres such as classical, jazz, hiphop...etc.
+	Here, we consider the problem of {\bf automatic categorization}; specifically, {\bf music genre classification} i.e. classifying the give set of music audio files into different genres such as classical, jazz, hiphop...etc.
 	
 
 \section{Audio data representations}
 
 \subsection{Audio signal}
-	Depending on the deep learning architecture that one will utilize, different "version" of input sound data is required.
-	Also, an efficient representation of audio data is necessary so that the we can easily use it  to train the given, without too heavy memory usage/computation.
+	Depending on the deep learning architecture that one utilizes, different "versions" of input sound data are required.
+	Also, an efficient representation of audio data is necessary so that we can easily train it without heavy memory usage/computation.
 	
-	The "original" representation is 1-dimensional (discrete) audio signal.
-	It may be appropriate if one uses techniques such as RNNs or LSTMs, but if one wants to use techniques such as CNNs, the data representation has to be processed to a different one.
+	The "original" representation is a 1-dimensional (discrete) audio signal.
+	It may be appropriate if one uses techniques such as RNN or LSTM, but if one wants to use techniques such as CNN, the data representation has to be processed differently.
 	The point is, the initial input audio data representations do matter, and this section is devoted to providing the necessary theoretical background.
 	
 	
@@ -100,7 +100,7 @@
 	
 	Suppose we have a time signal $x(t)$. Then the energy of the signal is defined as
 	$$E = \int_{-\infty}^\infty |x(t)|^2 dt$$
-	By Parseval's theorem, we have that
+	By Parseval's theorem, we have
 	$$\int_{-\infty}^\infty |x(t)|^2 dt = \int_{-\infty}^\infty |\hat{x}(f)|^2 df$$
 	where $\hat{x}(t)$ represents the Fourier transform of the signal.
 	
@@ -110,7 +110,7 @@
 	
 	Note that $S_{xx}$ is a function of frequency, not a function of time.
 	However, the spectral density of small windows of a longer signal may be calculated, plotted versus time associated with the window. Such graph is called a spectrogram.
-	In other words, spectrogram is a visual representation of the spectrum of frequencies of a signal as it varies with time.
+	In other words, a spectrogram is a visual representation of the spectrum of frequencies of a signal as it varies with time.
 	A common format is a 2-D representation: one axis for time, one axis for frequency, and the intensity (or color) of each point.
 	
 	The equation for deriving the spectrogram of a time signal $x(t)$ is
@@ -124,14 +124,14 @@
     \caption{Computing STFT ($g$ is the (sliding) window function)}
 \end{figure}	
 
-	Here, $\omega[n]$ is the window function, typically Hann window or Gaussian window.
+	Here, $\omega[n]$ is the window function, typically a Hann window or Gaussian window.
 	(Window function is a function that is zero-valued outside some chosen interval, and usually symmetric.)
 
 	
 \subsection{Mel scale/Mel spectrogram}
-	Mel scale, introduced by Stevens, Volkmann, and Newman in 1937, is a perceptual scale of pitches judged by listeners to be equal in distance from one another.
+	The Mel scale, introduced by Stevens, Volkmann, and Newman in 1937, is a perceptual scale of pitches judged by listeners to be equal in distance from one another.
 	In other words, the Mel Scale is constructed such that sounds of equal distance from each other on the Mel Scale, also “sound” to humans as they are equal in distance from one another.	
-	(Think of Mel scale as a psychoacoustic scale)
+	(Think of the Mel scale as a psychoacoustic scale)
 
 	There isn't a "single" Mel scale formula, but the popular formula from O'Shaughnessy's book is as the following:
 	$$m = 2595 \log_{10} \left( 1 + \frac{f}{700} \right)$$	
@@ -229,14 +229,14 @@ These properties of KLT make the classifying procedure easier and lead to good c
 
 \section{Method}
 
-Please refer to our github repository\footnote{\url{https://github.com/iJinjin/AI_Team23_Proj}} for the code.
+Please refer to our github repository\footnote{\url{https://github.com/iJinjin/CS470_Team23}} for the code.
 
 \section{Contributions}
 
 \begin{itemize}
 \item Minsung Park: TBD
 
-\item Youngjin Jin: TBD
+\item Youngjin Jin: Implementing the data processing code for the spectrogram and melspectrogram images, csv file generation, making the overall CNN architecture and code for training and testing CNN data, writing the README file, proof-checking the final report document
 
 \item Junghyun Lee: TBD
 
