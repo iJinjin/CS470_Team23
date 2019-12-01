@@ -74,5 +74,5 @@ net = Model_CNN()
 net = Model_CNN_Mel()
 ```
 
-## Some things that can be done
-Try changing the network architecture to see if we can achieve better results. Hyperparameters can also be changed (learning rate is currently set at 0.0015).
+## Things to note
+The LSTM model description can be found in the README file in the LSTM directory.
