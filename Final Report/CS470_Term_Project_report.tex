@@ -229,14 +229,32 @@ These properties of KLT make the classifying procedure easier and lead to good c
 
 \section{Method}
 
-Please refer to our github repository\footnote{\url{https://github.com/iJinjin/CS470_Team23}} for the code.
+Please refer to our github repository\footnote{\url{https://github.com/iJinjin/CS470_Team23}} for the code and additional documentation (in README).
+
+\subsection{CNN Classification}
+We created two separate image files (spectrogram and Mel spectrogram) from the GTZAN dataset, which contains 100 wav files, each 30 seconds in length. These spectrograms and Mel spectrograms were generated using the librosa library in python (found in createmelimg.py and createspecimg.py) using a 3 second window. One wav file could generate 10 spectrogram and Mel spectrogram images, bringing the total number of images to 2000 (1000 spectrogram images and 1000 Mel spectrogram images). The spectrogram image file was set to $256 \times 256$ resolution, while the Mel spectrogram image file was set to $680 \times 480$ resolution. These image datasets were split into training data and test data. Each genre (label) contains 800 training images, and 200 test images. We trained these two models with each of their CNN models. The CNN model architectures can be found in cnn.py. The trained model was then tested with the test data, and the accuracy was recorded.  
+
+\section{Results}
+
+\subsection{CNN Classification}
+
+\subsubsection{CNN using Spectrogram}
+Using the CNN architecture, the model achieved 38\% accuracy on the GTZAN test data.
+
+\subsubsection{CNN using Mel Spectrogram}
+Using the CNN architecture, the model achieved 36\% accuracy on the GTZAN test data.
+
+\section{Discussion}
+
+\subsection{CNN Classification}
+While classification of GTZAN test data using CNN did not yield completely random results (with accuracy 10\%), it certainly did not perform as well as we expected. We expected classification using Mel Spectrogram to yield a better accuracy compared to the regular Spectrogram, as the Mel Spectrogram gives a better representation of what humans hear. There are two major points that we would like to address about the subpar performance of our CNN model. One is that we may not have found the ideal architecture / hyperparameters to optimize the performance of this approach. We would have liked to use the exact architecture to measure the performance differences between Spectrogram and Mel spectrogram, but the two images had different resolutions, which resulted in the architectures having different kernel / window sizes. Moreover, the use of CNN means that we have essentially transformed an audio genre classification problem into an image classification problem. Since we are not directly utilizing the audio data itself but instead using an image, this does not directly translate to human's ability to recognize sound and differentiate between genres. From this, we may conclude that CNNs may not be the best approach when it comes to aural data analytics.
 
 \section{Contributions}
 
 \begin{itemize}
 \item Minsung Park: TBD
 
-\item Youngjin Jin: Implementing the data processing code for the spectrogram and melspectrogram images, csv file generation, making the overall CNN architecture and code for training and testing CNN data, writing the README file, proof-checking the final report document
+\item Youngjin Jin: Implementing the data processing code for the spectrogram and melspectrogram images, csv file generation, making the overall CNN architecture and code for training and testing CNN data, writing the README file, proof-checking the final report document and writing the results and discussion section of the report
 
 \item Junghyun Lee: TBD
 
