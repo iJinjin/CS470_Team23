@@ -1,10 +1,10 @@
 ## File/Folder description
-'''
+```
 dataset/_train
        /_valid
        /_test
        /ckpt
-'''
+```
  divide GTZAN dataset into train, validation, and test dataset.
  - ./_train: contains 70 .wav files
  - ./_valid: contains 20 .wav files
@@ -25,20 +25,20 @@ dataset/_train
  
 ## Usage
 To preprocess .wav data
-'''
+```
 python data_processor.py
-'''
+```
 
 Test 3 models with real music file. Architecture(.json) and pretrained weight parameters(.hdf5) for models are available
-'''
+```
 python genre_test.py <any .wav file for test>
-'''
+```
 
 You can train each models on given dataset
-'''
+```
 python LSTM_training.py
 python melLSTM_training.py
 python melLSTM_training_3lyr.py
-'''
+```
 For each epoch, save model weights if the model is improved based on validation test.
 Training histories are saved as .csv files
