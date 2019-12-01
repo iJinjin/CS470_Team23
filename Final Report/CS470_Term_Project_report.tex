@@ -4,9 +4,9 @@
 \usepackage{geometry}
  \geometry{
  a4paper,
- total={170mm,257mm},
- left=20mm,
- top=15mm,
+ total={190mm,260mm},
+ left=10mm,
+ top=10mm,
  }
 \usepackage[utf8]{inputenc}
 \usepackage[backend=biber]{biblatex}
@@ -66,6 +66,8 @@
 \begin{document}
 % Up to 5 pages!
 \maketitle
+
+Repository link: \url{https://github.com/iJinjin/CS470_Team23}
 
 \section{Introduction}
 
@@ -223,9 +225,6 @@ To solve the problem of some relativity among the different dimensions of raw fe
 Then by the Karhunen-Lo\'eve Theorem, the feature vector is mapped into an orthogonal space, and the covariance matrix is diagonalized.
 These properties of KLT make the classifying procedure easier and lead to good classification performance, even with simple classifier with Spectral Contrast (Jiang {\it et al.}).
 
-\subsubsection{Chroma}
-...?
-
 
 \section{Method}
 
@@ -234,29 +233,36 @@ Please refer to our github repository\footnote{\url{https://github.com/iJinjin/C
 \subsection{CNN Classification}
 We created two separate image files (spectrogram and Mel spectrogram) from the GTZAN dataset, which contains 100 wav files, each 30 seconds in length. These spectrograms and Mel spectrograms were generated using the librosa library in python (found in createmelimg.py and createspecimg.py) using a 3 second window. One wav file could generate 10 spectrogram and Mel spectrogram images, bringing the total number of images to 2000 (1000 spectrogram images and 1000 Mel spectrogram images). The spectrogram image file was set to $256 \times 256$ resolution, while the Mel spectrogram image file was set to $680 \times 480$ resolution. These image datasets were split into training data and test data. Each genre (label) contains 800 training images, and 200 test images. We trained these two models with each of their CNN models. The CNN model architectures can be found in cnn.py. The trained model was then tested with the test data, and the accuracy was recorded.  
 
+\subsection{LSTM Classification}
+We introduced LSTM based classification model for genre prediction. The features of music file can be extracted by librosa package, which contains MFCC, spectral centroid, chroma, spectral contrast. Two-layer LSTM model with 4 features is constructed with 128 unit on first layer and 32 unit for second layer. Using same model architecture, we trained model with 5 features including melspectrogram. Also, we made 3-layer LSTM model, constructed with 128, 64, 32 units, for classification. The specific information of models can be found in .json files. The models trained on GTZAN dataset, divided into train, test and validation with random shuffling.   
 \section{Results}
+Under GTZAN test data...
 
-\subsection{CNN Classification}
+CNN using Spectrogram: Using the CNN architecture, the model achieved 38\% accuracy.
 
-\subsubsection{CNN using Spectrogram}
-Using the CNN architecture, the model achieved 38\% accuracy on the GTZAN test data.
+CNN using Mel Spectrogram: Using the CNN architecture, the model achieved 36\% accuracy.
 
-\subsubsection{CNN using Mel Spectrogram}
-Using the CNN architecture, the model achieved 36\% accuracy on the GTZAN test data.
+2L-LSTM using MFCC, spectral centroid, chroma, spectral contrast: The model achieved 39\% accuracy.
+
+2L-LSTM using MFCC, spectral centroid, chroma, spectral contrast, Mel Spectrogram: The model achieved 34\% accuracy.
+
+3L-LSTM using MFCC, spectral centroid, chroma, spectral contrast, Mel Spectrogram: The model achieved 41\% accuracy.
 
 \section{Discussion}
 
-\subsection{CNN Classification}
 While classification of GTZAN test data using CNN did not yield completely random results (with accuracy 10\%), it certainly did not perform as well as we expected. We expected classification using Mel Spectrogram to yield a better accuracy compared to the regular Spectrogram, as the Mel Spectrogram gives a better representation of what humans hear. There are two major points that we would like to address about the subpar performance of our CNN model. One is that we may not have found the ideal architecture / hyperparameters to optimize the performance of this approach. We would have liked to use the exact architecture to measure the performance differences between Spectrogram and Mel spectrogram, but the two images had different resolutions, which resulted in the architectures having different kernel / window sizes. Moreover, the use of CNN means that we have essentially transformed an audio genre classification problem into an image classification problem. Since we are not directly utilizing the audio data itself but instead using an image, this does not directly translate to human's ability to recognize sound and differentiate between genres. From this, we may conclude that CNNs may not be the best approach when it comes to aural data analytics.
+In LSTM models did not show significant improvement on performance. Even though these 5 features are known to be significant features for representing musical components such as rythm and pitch, it was not enough to overcome the limitations of a small dataset.  
+
+
 
 \section{Contributions}
 
 \begin{itemize}
-\item Minsung Park: TBD
+\item Minsung Park: Extension of feature extraction from Youngjin's works, implementing  codes in LSTMmodel directory and parameter tuning for three LSTM genre classification models.
 
 \item Youngjin Jin: Implementing the data processing code for the spectrogram and melspectrogram images, csv file generation, making the overall CNN architecture and code for training and testing CNN data, writing the README file, proof-checking the final report document and writing the results and discussion section of the report
 
-\item Junghyun Lee: TBD
+\item Junghyun Lee: Topic research, oversaw the theoretical aspects of the project and wrote the background section of the final report.
 
 \end{itemize}
 
