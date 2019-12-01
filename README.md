@@ -28,7 +28,7 @@ pytz-2019.3
 pandas-0.25.3     
 torch-1.3.1  
 torchvision-0.4.2  
-keras-2.3.1 
+keras-2.3.1   
 tensorflow-1.14.0
 
 Note that installing librosa, torch, torchvision, and pandas should take care of most of these dependencies.  
