@@ -5,7 +5,7 @@ dataset/_train
        /_test
        /ckpt
 ```
- divide GTZAN dataset into train, validation, and test dataset.
+ GTZAN dataset is divided into train, validation, and test dataset.
  - ./_train: contains 70 .wav files
  - ./_valid: contains 20 .wav files
  - ./_test: contains 10 .wav files
